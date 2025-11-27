@@ -29,6 +29,24 @@ const ViteIcon = ({ className = "" }) => (
   </svg>
 );
 
+// Official Figma Icon
+const FigmaIcon = ({ className = "" }) => (
+  <svg className={className} viewBox="0 0 32 32" fill="currentColor">
+    <path fill="#f4511e" d="M12 4h4v8h-4a4 4 0 0 1-4-4a4 4 0 0 1 4-4"/>
+    <path fill="#ff8a65" d="M20 12h-4V4h4a4 4 0 0 1 4 4a4 4 0 0 1-4 4"/>
+    <rect x="16" y="12" fill="#29b6f6" rx="4" transform="rotate(180 20 16)"/>
+    <path fill="#7c4dff" d="M12 12h4v8h-4a4 4 0 0 1-4-4a4 4 0 0 1 4-4"/>
+    <path fill="#00e676" d="M12 20h4v4a4 4 0 0 1-4 4a4 4 0 0 1-4-4a4 4 0 0 1 4-4"/>
+  </svg>
+);
+
+// GitHub Icon
+const GitHubIcon = ({ className = "" }) => (
+  <svg className={className} viewBox="0 0 24 24" fill="currentColor">
+    <path d="M12 2C6.477 2 2 6.477 2 12c0 4.42 2.865 8.166 6.839 9.489.5.092.682-.217.682-.482 0-.237-.008-.866-.013-1.7-2.782.603-3.369-1.337-3.369-1.337-.454-1.156-1.11-1.462-1.11-1.462-.908-.62.069-.608.069-.608 1.003.07 1.531 1.03 1.531 1.03.892 1.529 2.341 1.087 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.11-4.555-4.943 0-1.091.39-1.984 1.029-2.683-.103-.253-.446-1.27.098-2.647 0 0 .84-.269 2.75 1.022.8-.223 1.65-.334 2.5-.338.85.004 1.7.115 2.5.338 1.91-1.291 2.75-1.022 2.75-1.022.544 1.377.202 2.394.1 2.647.64.699 1.028 1.592 1.028 2.683 0 3.842-2.339 4.687-4.566 4.935.359.309.678.919.678 1.852 0 1.336-.012 2.415-.012 2.743 0 .267.18.578.688.48C19.138 20.163 22 16.418 22 12c0-5.523-4.477-10-10-10z"/>
+  </svg>
+);
+
 const DeltaLabs = () => {
   const [ref, inView] = useInView({
     triggerOnce: true,
@@ -39,8 +57,17 @@ const DeltaLabs = () => {
     { name: "React", icon: ReactIcon },
     { name: "TypeScript", icon: TypeScriptIcon },
     { name: "Tailwind CSS", icon: TailwindIcon },
-    { name: "Vite", icon: ViteIcon }
+    { name: "Vite", icon: ViteIcon },
+    { name: "Figma", icon: FigmaIcon }
   ];
+
+  const handleFigmaClick = () => {
+    window.open('https://www.figma.com/design/FKY5f0yd3fSsTmgjERfFHb/Education-UIUX?node-id=0-1&p=f&t=eVN64FtUWw0NKS1Z-0', '_blank');
+  };
+
+  const handleGitHubClick = () => {
+    window.open('https://github.com/Delta-Rabbit/Delta_Labs', '_blank');
+  };
 
   return (
     <motion.div
@@ -48,10 +75,10 @@ const DeltaLabs = () => {
       initial={{ opacity: 0, y: 30 }}
       animate={inView ? { opacity: 1, y: 0 } : {}}
       transition={{ duration: 0.6 }}
-      className="group relative bg-white dark:bg-neutral-800 rounded-3xl p-8 shadow-2xl hover:shadow-3xl transition-all duration-500 border border-neutral-100 dark:border-neutral-700 hover:border-ethiopian-green/30 overflow-hidden"
+      className="group relative bg-[#174A5F] rounded-3xl p-8 shadow-2xl hover:shadow-3xl transition-all duration-500 border border-[#1E5A75] hover:border-[#2A7A9A] overflow-hidden"
     >
-      {/* Background Gradient */}
-      <div className="absolute inset-0 bg-gradient-to-br from-ethiopian-green/5 via-transparent to-axum-purple/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+      {/* Background Pattern */}
+      <div className="absolute inset-0 bg-gradient-to-br from-[#174A5F] via-[#1E5A75] to-[#0F3A4F] opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
       
       <div className="relative z-10">
         <div className="flex flex-col lg:flex-row gap-8 items-start">
@@ -75,18 +102,39 @@ const DeltaLabs = () => {
                   className="w-full h-auto object-cover rounded-2xl transition-transform duration-500 group-hover/image:scale-110"
                 />
                 
-                {/* Overlay Gradient */}
-                <div className="absolute inset-0 bg-gradient-to-t from-black/20 via-transparent to-transparent opacity-0 group-hover/image:opacity-100 transition-opacity duration-500" />
+                {/* Blurry Bottom Overlay */}
+                <div className="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-[#174A5F]/90 to-transparent backdrop-blur-sm" />
                 
-                {/* Floating Badge */}
-                <motion.div
-                  initial={{ opacity: 0, scale: 0 }}
-                  animate={inView ? { opacity: 1, scale: 1 } : {}}
-                  transition={{ delay: 0.8 }}
-                  className="absolute top-4 right-4 bg-gradient-to-r from-ethiopian-green to-sunset-gold text-white px-3 py-1 rounded-full text-sm font-semibold shadow-lg"
-                >
-                  Live Project
-                </motion.div>
+                {/* Button Container */}
+                <div className="absolute bottom-4 left-1/2 transform -translate-x-1/2 flex flex-col sm:flex-row gap-3 w-full max-w-xs">
+                  {/* Figma Link Button - White with black text and border */}
+                  <motion.button
+                    onClick={handleFigmaClick}
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={inView ? { opacity: 1, y: 0 } : {}}
+                    transition={{ delay: 0.8 }}
+                    whileHover={{ scale: 1.05 }}
+                    whileTap={{ scale: 0.95 }}
+                    className="flex-1 bg-white hover:bg-gray-100 text-black px-4 py-3 rounded-xl font-semibold shadow-lg hover:shadow-xl transition-all duration-300 flex items-center justify-center gap-2 group/button border-2 border-gray-300 hover:border-gray-400"
+                  >
+                    <FigmaIcon className="w-4 h-4" />
+                    <span className="text-sm">Figma Design</span>
+                  </motion.button>
+
+                  {/* GitHub Link Button */}
+                  <motion.button
+                    onClick={handleGitHubClick}
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={inView ? { opacity: 1, y: 0 } : {}}
+                    transition={{ delay: 0.9 }}
+                    whileHover={{ scale: 1.05 }}
+                    whileTap={{ scale: 0.95 }}
+                    className="flex-1 bg-gray-800 hover:bg-gray-900 text-white px-4 py-3 rounded-xl font-semibold shadow-lg hover:shadow-xl transition-all duration-300 flex items-center justify-center gap-2 group/button border border-gray-600/50"
+                  >
+                    <GitHubIcon className="w-4 h-4" />
+                    <span className="text-sm">GitHub Repo</span>
+                  </motion.button>
+                </div>
               </motion.div>
 
               {/* Decorative Elements */}
@@ -96,7 +144,7 @@ const DeltaLabs = () => {
                   rotate: [0, 5, 0]
                 }}
                 transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
-                className="absolute -top-2 -left-2 w-6 h-6 bg-sunset-gold rounded-lg"
+                className="absolute -top-2 -left-2 w-6 h-6 bg-[#2A7A9A] rounded-lg"
               />
               <motion.div
                 animate={{ 
@@ -104,7 +152,7 @@ const DeltaLabs = () => {
                   rotate: [0, -3, 0]
                 }}
                 transition={{ duration: 3, repeat: Infinity, ease: "easeInOut", delay: 1 }}
-                className="absolute -bottom-2 -right-2 w-4 h-4 bg-ethiopian-green rounded-lg"
+                className="absolute -bottom-2 -right-2 w-4 h-4 bg-[#3A8AAA] rounded-lg"
               />
             </div>
           </motion.div>
@@ -116,28 +164,32 @@ const DeltaLabs = () => {
               <div className="flex items-center gap-4">
                 <motion.div
                   whileHover={{ scale: 1.1 }}
-                  className="w-12 h-12 bg-gradient-to-r from-ethiopian-green to-sunset-gold rounded-2xl flex items-center justify-center shadow-lg"
+                  className="w-12 h-12 bg-white rounded-2xl flex items-center justify-center shadow-lg overflow-hidden"
                 >
-                  <span className="text-white font-bold text-lg">Δ</span>
+                  <img 
+                    src="/DeltaLabslogo.png" 
+                    alt="Delta Labs Logo"
+                    className="w-full h-full object-contain p-1"
+                  />
                 </motion.div>
                 <div>
-                  <h3 className="text-2xl font-bold text-neutral-900 dark:text-white group-hover:text-ethiopian-green transition-colors">
+                  <h3 className="text-2xl font-bold text-white group-hover:text-[#A8D8EA] transition-colors">
                     Delta Labs
                   </h3>
-                  <p className="text-lg text-ethiopian-green font-semibold">
+                  <p className="text-lg text-[#A8D8EA] font-semibold">
                     Educational Learning Platform
                   </p>
                 </div>
               </div>
-              <p className="text-neutral-600 dark:text-neutral-300 text-lg leading-relaxed">
+              <p className="text-[#C4E4F2] text-lg leading-relaxed">
                 An interactive educational platform exploring AI-powered learning features and engaging content delivery with modern UX patterns.
               </p>
             </div>
 
             {/* Features List */}
             <div className="space-y-3">
-              <h4 className="font-semibold text-neutral-900 dark:text-white flex items-center gap-2">
-                <div className="w-2 h-2 bg-sunset-gold rounded-full"></div>
+              <h4 className="font-semibold text-white flex items-center gap-2">
+                <div className="w-2 h-2 bg-[#A8D8EA] rounded-full"></div>
                 Key Achievements
               </h4>
               <ul className="space-y-2">
@@ -145,27 +197,27 @@ const DeltaLabs = () => {
                   initial={{ opacity: 0, x: 20 }}
                   animate={inView ? { opacity: 1, x: 0 } : {}}
                   transition={{ delay: 0.4 }}
-                  className="flex items-center gap-3 text-neutral-700 dark:text-neutral-300"
+                  className="flex items-center gap-3 text-[#C4E4F2]"
                 >
-                  <div className="w-1.5 h-1.5 bg-ethiopian-green rounded-full flex-shrink-0"></div>
+                  <div className="w-1.5 h-1.5 bg-[#A8D8EA] rounded-full flex-shrink-0"></div>
                   Built modular React app with intuitive navigation & smooth course progression
                 </motion.li>
                 <motion.li 
                   initial={{ opacity: 0, x: 20 }}
                   animate={inView ? { opacity: 1, x: 0 } : {}}
                   transition={{ delay: 0.5 }}
-                  className="flex items-center gap-3 text-neutral-700 dark:text-neutral-300"
+                  className="flex items-center gap-3 text-[#C4E4F2]"
                 >
-                  <div className="w-1.5 h-1.5 bg-ethiopian-green rounded-full flex-shrink-0"></div>
+                  <div className="w-1.5 h-1.5 bg-[#A8D8EA] rounded-full flex-shrink-0"></div>
                   Developed engaging learning modules with interactive content & progress tracking
                 </motion.li>
                 <motion.li 
                   initial={{ opacity: 0, x: 20 }}
                   animate={inView ? { opacity: 1, x: 0 } : {}}
                   transition={{ delay: 0.6 }}
-                  className="flex items-center gap-3 text-neutral-700 dark:text-neutral-300"
+                  className="flex items-center gap-3 text-[#C4E4F2]"
                 >
-                  <div className="w-1.5 h-1.5 bg-ethiopian-green rounded-full flex-shrink-0"></div>
+                  <div className="w-1.5 h-1.5 bg-[#A8D8EA] rounded-full flex-shrink-0"></div>
                   Implemented scalable educational architecture with TypeScript & custom learning hooks
                 </motion.li>
               </ul>
@@ -173,8 +225,8 @@ const DeltaLabs = () => {
 
             {/* Tech Stack */}
             <div className="space-y-3">
-              <h4 className="font-semibold text-neutral-900 dark:text-white flex items-center gap-2">
-                <div className="w-2 h-2 bg-axum-purple rounded-full"></div>
+              <h4 className="font-semibold text-white flex items-center gap-2">
+                <div className="w-2 h-2 bg-[#2A7A9A] rounded-full"></div>
                 Tech Stack
               </h4>
               <div className="flex flex-wrap gap-3">
@@ -187,10 +239,10 @@ const DeltaLabs = () => {
                       animate={inView ? { opacity: 1, scale: 1 } : {}}
                       transition={{ delay: 0.7 + index * 0.1 }}
                       whileHover={{ scale: 1.05 }}
-                      className="flex items-center gap-2 bg-neutral-50 dark:bg-neutral-700 px-3 py-2 rounded-xl group/tech hover:bg-ethiopian-green/10 transition-colors border border-neutral-200 dark:border-neutral-600"
+                      className="flex items-center gap-2 bg-[#1E5A75] backdrop-blur-sm px-3 py-2 rounded-xl group/tech hover:bg-[#2A7A9A] transition-colors border border-[#2A7A9A]/50 hover:border-[#A8D8EA]/50"
                     >
-                      <TechIcon className="w-4 h-4 text-neutral-700 dark:text-neutral-300 group-hover/tech:text-ethiopian-green transition-colors" />
-                      <span className="text-sm font-medium text-neutral-700 dark:text-neutral-300 group-hover/tech:text-ethiopian-green transition-colors">
+                      <TechIcon className="w-4 h-4 text-[#A8D8EA] group-hover/tech:text-white transition-colors" />
+                      <span className="text-sm font-medium text-[#A8D8EA] group-hover/tech:text-white transition-colors">
                         {tech.name}
                       </span>
                     </motion.div>
@@ -198,29 +250,6 @@ const DeltaLabs = () => {
                 })}
               </div>
             </div>
-
-            {/* View Project Button */}
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={inView ? { opacity: 1, y: 0 } : {}}
-              transition={{ delay: 0.9 }}
-              className="pt-4"
-            >
-              <motion.button
-                whileHover={{ scale: 1.02 }}
-                whileTap={{ scale: 0.98 }}
-                className="bg-gradient-to-r from-ethiopian-green to-sunset-gold text-white px-6 py-3 rounded-xl font-semibold shadow-lg hover:shadow-xl transition-all duration-300 flex items-center gap-2 group/button"
-              >
-                <span>View Project</span>
-                <motion.span
-                  animate={{ x: [0, 4, 0] }}
-                  transition={{ duration: 1.5, repeat: Infinity, ease: "easeInOut" }}
-                  className="group-hover/button:translate-x-1 transition-transform"
-                >
-                  →
-                </motion.span>
-              </motion.button>
-            </motion.div>
           </div>
         </div>
       </div>
