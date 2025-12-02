@@ -7,6 +7,7 @@ import DeltaLabs from '@/components/projectcard/DeltaLabs';
 import BeteSelamHospital from '@/components/projectcard/BeteSelamHospital';
 import Memarya from '@/components/projectcard/Memarya';
 import Eventify from '@/components/projectcard/Eventify';
+import NexusOS from '@/components/projectcard/NexusOS'; // Import the new component
 
 const additionalProjects = [
   {
@@ -15,9 +16,15 @@ const additionalProjects = [
     component: Eventify,
     props: {}
   },
+  {
+    id: 5,
+    title: 'Nexus OS - Futuristic Personal Dashboard',
+    component: NexusOS,
+    props: {}
+  },
   // Add more additional projects here as you create them
   // {
-  //   id: 5,
+  //   id: 6,
   //   title: 'Another Project',
   //   component: AnotherProject,
   //   props: {}
