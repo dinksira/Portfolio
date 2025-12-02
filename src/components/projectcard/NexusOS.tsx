@@ -84,7 +84,7 @@ const NexusOS = () => {
       initial={{ opacity: 0, y: 30 }}
       animate={inView ? { opacity: 1, y: 0 } : {}}
       transition={{ duration: 0.6 }}
-      className="group relative bg-gradient-to-br from-gray-900 via-[#030817] to-purple-900/20 rounded-3xl p-8 shadow-2xl hover:shadow-3xl transition-all duration-500 border border-purple-900/30 hover:border-cyan-500/50 overflow-hidden"
+      className="group relative bg-[#0a0a10] rounded-3xl p-8 shadow-2xl hover:shadow-3xl transition-all duration-500 border border-purple-900/30 hover:border-cyan-500/50 overflow-hidden"
     >
       {/* Animated Background Elements */}
       <div className="absolute inset-0 bg-gradient-to-br from-purple-900/10 via-transparent to-cyan-900/10 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
@@ -126,7 +126,7 @@ const NexusOS = () => {
                 </div>
                 
                 {/* Blurry Bottom Overlay */}
-                <div className="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-[#030817]/90 via-[#030817]/50 to-transparent backdrop-blur-sm" />
+                <div className="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-[#0a0a10]/90 via-[#0a0a10]/50 to-transparent backdrop-blur-sm" />
                 
                 {/* Button Container */}
                 <div className="absolute bottom-4 left-1/2 transform -translate-x-1/2 flex flex-col sm:flex-row gap-3 w-full max-w-xs">
@@ -257,7 +257,7 @@ const NexusOS = () => {
                         scale: 1.05,
                         background: "linear-gradient(135deg, rgba(6, 182, 212, 0.2), rgba(147, 51, 234, 0.2))"
                       }}
-                      className="flex items-center gap-2 bg-gradient-to-r from-cyan-900/30 to-purple-900/30 backdrop-blur-sm px-3 py-2 rounded-xl group/tech hover:bg-gradient-to-r hover:from-cyan-800/50 hover:to-purple-800/50 transition-all duration-300 border border-cyan-700/30 hover:border-cyan-400/50"
+                      className="flex items-center gap-2 bg-[#151525] backdrop-blur-sm px-3 py-2 rounded-xl group/tech hover:bg-[#202035] transition-all duration-300 border border-purple-700/30 hover:border-cyan-400/50"
                     >
                       <TechIcon className="w-4 h-4 text-cyan-300 group-hover/tech:text-white transition-colors" />
                       <span className="text-sm font-medium text-cyan-300 group-hover/tech:text-white transition-colors">
