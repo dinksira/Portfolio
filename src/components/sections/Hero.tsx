@@ -18,7 +18,6 @@ export default function Hero() {
   const deletingSpeed = 50;
   const pauseTime = 2000;
 
-  // Social media links
   const socialLinks = [
     {
       name: 'Behance',
