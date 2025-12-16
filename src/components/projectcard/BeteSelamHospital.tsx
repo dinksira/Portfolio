@@ -3,7 +3,6 @@
 import { motion } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
 
-// Tech Stack Icons
 const NextJsIcon = ({ className = "" }) => (
   <svg className={className} viewBox="0 0 24 24" fill="currentColor">
     <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l5-5-5-5v10z"/>
@@ -22,7 +21,6 @@ const TailwindIcon = ({ className = "" }) => (
   </svg>
 );
 
-// Figma Icon
 const FigmaIcon = ({ className = "" }) => (
   <svg className={className} viewBox="0 0 32 32" fill="currentColor">
     <path fill="#f4511e" d="M12 4h4v8h-4a4 4 0 0 1-4-4a4 4 0 0 1 4-4"/>
