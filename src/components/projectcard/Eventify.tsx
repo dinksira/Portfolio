@@ -4,7 +4,6 @@
 import { motion } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
 
-// Design Tools Icons
 const FigmaIcon = ({ className = "" }) => (
   <svg className={className} viewBox="0 0 32 32" fill="currentColor">
     <path fill="#f4511e" d="M12 4h4v8h-4a4 4 0 0 1-4-4a4 4 0 0 1 4-4"/>
