@@ -3,32 +3,33 @@
 import { motion, AnimatePresence } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
 import { useState } from 'react';
+
 import DeltaLabs from '@/components/projectcard/DeltaLabs';
 import BeteSelamHospital from '@/components/projectcard/BeteSelamHospital';
 import Memarya from '@/components/projectcard/Memarya';
 import Eventify from '@/components/projectcard/Eventify';
-import NexusOS from '@/components/projectcard/NexusOS'; // Import the new component
+import NexusOS from '@/components/projectcard/NexusOS';
+import HealthAdvisorCard from '@/components/projectcard/HealthAdvisor';
 
 const additionalProjects = [
   {
     id: 4,
     title: 'Eventify - Event Management Platform',
     component: Eventify,
-    props: {}
+    props: {},
   },
   {
     id: 5,
     title: 'Nexus OS - Futuristic Personal Dashboard',
     component: NexusOS,
-    props: {}
+    props: {},
   },
-  // Add more additional projects here as you create them
-  // {
-  //   id: 6,
-  //   title: 'Another Project',
-  //   component: AnotherProject,
-  //   props: {}
-  // }
+  {
+    id: 6,
+    title: 'Health Advisor - Personalized Health App',
+    component: HealthAdvisorCard,
+    props: {},
+  },
 ];
 
 export default function ProjectsShowcase() {
@@ -40,8 +41,12 @@ export default function ProjectsShowcase() {
   const [showAllProjects, setShowAllProjects] = useState(false);
 
   return (
-    <section id="projects" className="py-20 bg-white dark:bg-neutral-900 transition-colors duration-300">
+    <section
+      id="projects"
+      className="py-20 bg-white dark:bg-neutral-900 transition-colors duration-300"
+    >
       <div className="container mx-auto px-6">
+        {/* Section Header */}
         <motion.div
           ref={ref}
           initial={{ opacity: 0, y: 30 }}
@@ -56,9 +61,9 @@ export default function ProjectsShowcase() {
           </p>
         </motion.div>
 
-        {/* Project Cards Container */}
+        {/* Project Cards */}
         <div className="max-w-6xl mx-auto space-y-8">
-          {/* Featured Projects (Always shown) */}
+          {/* Always-visible Featured Projects */}
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             animate={inView ? { opacity: 1, y: 0 } : {}}
@@ -83,58 +88,69 @@ export default function ProjectsShowcase() {
             <Memarya />
           </motion.div>
 
-          {/* Additional Projects - Shown when "View All Projects" is clicked */}
+          {/* Additional Projects */}
           <AnimatePresence>
-            {showAllProjects && additionalProjects.map((project, index) => {
-              const ProjectComponent = project.component;
-              return (
-                <motion.div
-                  key={project.id}
-                  initial={{ opacity: 0, y: 30 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  exit={{ opacity: 0, y: -30 }}
-                  transition={{ delay: index * 0.1, duration: 0.5 }}
-                >
-                  <ProjectComponent {...project.props} />
-                </motion.div>
-              );
-            })}
+            {showAllProjects &&
+              additionalProjects.map((project, index) => {
+                const ProjectComponent = project.component;
+                return (
+                  <motion.div
+                    key={project.id}
+                    initial={{ opacity: 0, y: 30 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    exit={{ opacity: 0, y: -30 }}
+                    transition={{ delay: index * 0.1, duration: 0.5 }}
+                  >
+                    <ProjectComponent {...project.props} />
+                  </motion.div>
+                );
+              })}
           </AnimatePresence>
         </div>
 
-        {/* View All Projects CTA */}
+        {/* View All / Show Less CTA */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={inView ? { opacity: 1, y: 0 } : {}}
           transition={{ delay: 0.5 }}
           className="text-center mt-12"
         >
-          <button 
+          <button
             onClick={() => setShowAllProjects(!showAllProjects)}
             className="btn-primary text-lg px-8 py-4 group transition-all duration-300 hover:scale-105"
           >
             {showAllProjects ? (
               <span className="flex items-center justify-center">
                 Show Less
-                <svg 
-                  className="w-5 h-5 ml-2 transform rotate-180 transition-transform duration-300" 
-                  fill="none" 
-                  stroke="currentColor" 
+                <svg
+                  className="w-5 h-5 ml-2 rotate-180 transition-transform duration-300"
+                  fill="none"
+                  stroke="currentColor"
                   viewBox="0 0 24 24"
                 >
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth={2}
+                    d="M19 9l-7 7-7-7"
+                  />
                 </svg>
               </span>
             ) : (
               <span className="flex items-center justify-center">
                 View All Projects ({additionalProjects.length})
-                <svg 
-                  className="w-5 h-5 ml-2 group-hover:translate-y-1 transition-transform duration-300" 
-                  fill="none" 
-                  stroke="currentColor" 
+                <svg
+                  className="w-5 h-5 ml-2 group-hover:translate-y-1 transition-transform duration-300"
+                  fill="none"
+                  stroke="currentColor"
                   viewBox="0 0 24 24"
                 >
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth={2}
+                    d="M19 9l-7 7-7-7"
+                  />
                 </svg>
               </span>
             )}
