@@ -3,7 +3,6 @@
 import { motion } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
 
-// Simple Icons
 const AndroidIcon = ({ className = '' }) => (
   <svg className={className} viewBox="0 0 24 24" fill="currentColor">
     <path d="M17.6 9.48l1.43-2.49a.5.5 0 0 0-.86-.5l-1.46 2.53A7.97 7.97 0 0 0 12 7a7.97 7.97 0 0 0-4.71 1.52L5.83 6.5a.5.5 0 1 0-.86.5L6.4 9.48A8.02 8.02 0 0 0 4 15v5a1 1 0 0 0 1 1h1a1 1 0 0 0 1-1v-1h10v1a1 1 0 0 0 1 1h1a1 1 0 0 0 1-1v-5a8.02 8.02 0 0 0-2.4-5.52zM9 17a1 1 0 1 1 0-2 1 1 0 0 1 0 2zm6 0a1 1 0 1 1 0-2 1 1 0 0 1 0 2z" />
@@ -21,7 +20,6 @@ const HealthAdvisorCard = () => {
       transition={{ duration: 0.6 }}
       className="group relative bg-[#0b1220] rounded-3xl p-8 shadow-2xl border border-emerald-900/40 hover:border-emerald-400/60 overflow-hidden"
     >
-      {/* Ambient Gradient */}
       <div className="absolute inset-0 bg-gradient-to-br from-emerald-900/15 via-transparent to-cyan-900/15 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
 
       <div className="relative z-10 flex flex-col lg:flex-row gap-8">
