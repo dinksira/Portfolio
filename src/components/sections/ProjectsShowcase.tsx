@@ -3,7 +3,6 @@
 import { motion, AnimatePresence } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
 import { useState } from 'react';
-
 import DeltaLabs from '@/components/projectcard/DeltaLabs';
 import BeteSelamHospital from '@/components/projectcard/BeteSelamHospital';
 import Memarya from '@/components/projectcard/Memarya';
@@ -107,8 +106,6 @@ export default function ProjectsShowcase() {
               })}
           </AnimatePresence>
         </div>
-
-        {/* View All / Show Less CTA */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={inView ? { opacity: 1, y: 0 } : {}}
