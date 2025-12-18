@@ -2,6 +2,7 @@
 
 import { motion } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
+import Image from 'next/image';
 
 const AndroidIcon = ({ className = '' }) => (
   <svg className={className} viewBox="0 0 24 24" fill="currentColor">
@@ -10,7 +11,10 @@ const AndroidIcon = ({ className = '' }) => (
 );
 
 const HealthAdvisorCard = () => {
-  const [ref, inView] = useInView({ triggerOnce: true, threshold: 0.1 });
+  const [ref, inView] = useInView({
+    triggerOnce: true,
+    threshold: 0.1,
+  });
 
   return (
     <motion.div
@@ -31,9 +35,11 @@ const HealthAdvisorCard = () => {
           className="lg:w-2/5"
         >
           <div className="relative rounded-2xl overflow-hidden bg-gradient-to-br from-emerald-900/40 to-cyan-900/40">
-            <img
-              src="/health-advisor-preview.png"
+            <Image
+              src="/assets/images/Ha1.jpg"
               alt="Health Advisor App Preview"
+              width={800}
+              height={600}
               className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
             />
             <div className="absolute inset-0 bg-gradient-to-t from-[#0b1220]/90 via-transparent to-transparent" />
@@ -45,26 +51,35 @@ const HealthAdvisorCard = () => {
           {/* Header */}
           <div className="flex items-center gap-4">
             <div className="w-12 h-12 rounded-2xl bg-gradient-to-br from-emerald-500 to-cyan-500 flex items-center justify-center shadow-lg">
-              <img
-                src="/health-advisor-logo.png"
+              <Image
+                src="/assets/images/Ha2.jpg"
                 alt="Health Advisor Logo"
-                className="w-8 h-8 object-contain"
+                width={32}
+                height={32}
+                className="object-contain"
               />
             </div>
             <div>
-              <h3 className="text-2xl font-bold text-white">Health Advisor</h3>
-              <p className="text-emerald-300 font-semibold">Personalized Health Recommendation App</p>
+              <h3 className="text-2xl font-bold text-white">
+                Health Advisor
+              </h3>
+              <p className="text-emerald-300 font-semibold">
+                Personalized Health Recommendation App
+              </p>
             </div>
           </div>
 
           <p className="text-emerald-100/90 text-lg leading-relaxed">
-            An Android application designed to deliver personalized health insights and daily
-            recommendations based on user data, habits, and wellness goals.
+            An Android application designed to deliver personalized health
+            insights and daily recommendations based on user data, habits, and
+            wellness goals.
           </p>
 
           {/* Features */}
           <div className="space-y-3">
-            <h4 className="text-white font-semibold">Key Capabilities</h4>
+            <h4 className="text-white font-semibold">
+              Key Capabilities
+            </h4>
             <ul className="space-y-2 text-emerald-100/90">
               <li className="flex gap-3">
                 <span className="mt-2 w-1.5 h-1.5 bg-emerald-400 rounded-full" />
@@ -85,14 +100,18 @@ const HealthAdvisorCard = () => {
           <div className="flex items-center gap-3 pt-2">
             <div className="flex items-center gap-2 px-3 py-2 rounded-xl bg-[#141c2f] border border-emerald-700/40">
               <AndroidIcon className="w-4 h-4 text-emerald-400" />
-              <span className="text-sm font-medium text-emerald-300">Android</span>
+              <span className="text-sm font-medium text-emerald-300">
+                Android
+              </span>
             </div>
           </div>
 
           {/* Status */}
           <div className="flex items-center gap-2 pt-2">
             <div className="w-2 h-2 bg-green-500 rounded-full animate-pulse" />
-            <span className="text-sm text-emerald-300 font-medium">Active Development</span>
+            <span className="text-sm text-emerald-300 font-medium">
+              Active Development
+            </span>
           </div>
         </div>
       </div>
