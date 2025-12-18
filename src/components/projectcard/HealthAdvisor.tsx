@@ -24,54 +24,56 @@ const HealthAdvisorCard = () => {
       transition={{ duration: 0.6 }}
       className="group relative bg-[#0b1220] rounded-3xl p-8 shadow-2xl border border-emerald-900/40 hover:border-emerald-400/60 overflow-hidden"
     >
+      {/* Ambient background */}
       <div className="absolute inset-0 bg-gradient-to-br from-emerald-900/15 via-transparent to-cyan-900/15 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
 
       <div className="relative z-10 flex flex-col lg:flex-row gap-8">
-        {/* Left: Image Preview (stylish dual-image layout) */}
+        {/* LEFT — Image Preview (Eventify-style stacked mockups) */}
         <motion.div
-          initial={{ opacity: 0, x: -20 }}
+          initial={{ opacity: 0, x: -30 }}
           animate={inView ? { opacity: 1, x: 0 } : {}}
-          transition={{ delay: 0.2 }}
+          transition={{ delay: 0.3 }}
           className="lg:w-2/5"
         >
-          <div className="relative h-full rounded-2xl overflow-hidden bg-gradient-to-br from-emerald-900/40 to-cyan-900/40 p-4">
-            {/* Main image */}
+          <div className="relative">
             <motion.div
-              whileHover={{ scale: 1.03 }}
-              className="relative z-10 rounded-xl overflow-hidden shadow-xl"
+              whileHover={{ scale: 1.02 }}
+              className="relative rounded-2xl overflow-hidden shadow-2xl min-h-80
+                         bg-[#0f172a]/80 backdrop-blur-sm border border-emerald-700/40"
             >
-              <Image
-                src="/assets/images/Ha1.jpg"
-                alt="Health Advisor App Screen"
-                width={800}
-                height={600}
-                className="w-full h-full object-cover"
-              />
-            </motion.div>
+              <div className="relative w-full h-full flex items-center justify-center p-8">
+                {/* Screen 1 */}
+                <div className="absolute top-10 left-10 w-36 h-64 bg-black rounded-2xl shadow-xl transform -rotate-6 border border-emerald-500/30">
+                  <Image
+                    src="/assets/images/Ha1.jpg"
+                    alt="Health Advisor Screen One"
+                    width={300}
+                    height={600}
+                    className="w-full h-full object-cover rounded-2xl"
+                  />
+                </div>
 
-            {/* Secondary floating image */}
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={inView ? { opacity: 1, y: 0 } : {}}
-              transition={{ delay: 0.4 }}
-              className="absolute -bottom-6 -right-6 w-2/3 rounded-xl overflow-hidden shadow-2xl border border-emerald-400/30 bg-[#0b1220]"
-            >
-              <Image
-                src="/assets/images/Ha2.jpg"
-                alt="Health Advisor Secondary Screen"
-                width={600}
-                height={400}
-                className="w-full h-full object-cover"
-              />
-            </motion.div>
+                {/* Screen 2 */}
+                <div className="absolute top-16 left-28 w-36 h-64 bg-black rounded-2xl shadow-xl transform rotate-3 border border-emerald-500/30">
+                  <Image
+                    src="/assets/images/Ha2.jpg"
+                    alt="Health Advisor Screen Two"
+                    width={300}
+                    height={600}
+                    className="w-full h-full object-cover rounded-2xl"
+                  />
+                </div>
+              </div>
 
-            <div className="absolute inset-0 bg-gradient-to-t from-[#0b1220]/90 via-transparent to-transparent pointer-events-none" />
+              {/* Bottom fade */}
+              <div className="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-[#0b1220]/90 to-transparent" />
+            </motion.div>
           </div>
         </motion.div>
 
-        {/* Right: Content */}
+        {/* RIGHT — Content */}
         <div className="flex-1 space-y-6">
-          {/* Header (icon intentionally left blank for now) */}
+          {/* Header (icon slot reserved) */}
           <div className="flex items-center gap-4">
             <div className="w-12 h-12 rounded-2xl bg-[#141c2f] border border-emerald-700/40" />
             <div>
@@ -91,7 +93,9 @@ const HealthAdvisorCard = () => {
 
           {/* Features */}
           <div className="space-y-3">
-            <h4 className="text-white font-semibold">Key Capabilities</h4>
+            <h4 className="text-white font-semibold">
+              Key Capabilities
+            </h4>
             <ul className="space-y-2 text-emerald-100/90">
               <li className="flex gap-3">
                 <span className="mt-2 w-1.5 h-1.5 bg-emerald-400 rounded-full" />
