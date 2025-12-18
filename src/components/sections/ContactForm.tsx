@@ -28,15 +28,15 @@ export default function ContactForm() {
   };
 
   const contactInfo = [
-    { icon: Mail, label: 'Email', value: 'hello@dinksira.com', href: 'mailto:hello@dinksira.com' },
-    { icon: Phone, label: 'Phone', value: '+251 91 234 5678', href: 'tel:+251912345678' },
+    { icon: Mail, label: 'Email', value: 'dinksiraelisa@gmail.com', href: 'mailto:dinksiraelisa@gmail.com' },
+    { icon: Phone, label: 'Phone', value: '0949765679', href: 'tel:0949765679' },
     { icon: MapPin, label: 'Location', value: 'Addis Ababa, Ethiopia', href: '#' },
   ];
 
   return (
     <section id="contact" className="py-20 bg-white dark:bg-neutral-900 transition-colors duration-300">
       <div className="container mx-auto px-6">
-        {/* Header */}
+        {/* Section Header */}
         <motion.div
           ref={ref}
           initial={{ opacity: 0, y: 30 }}
@@ -53,7 +53,7 @@ export default function ContactForm() {
 
         {/* Content Grid */}
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 max-w-6xl mx-auto">
-          {/* Left Contact Info */}
+          {/* Contact Info */}
           <motion.div
             initial={{ opacity: 0, x: -50 }}
             animate={inView ? { opacity: 1, x: 0 } : {}}
@@ -69,6 +69,8 @@ export default function ContactForm() {
                   <motion.a
                     key={item.label}
                     href={item.href}
+                    target={item.label !== 'Location' ? '_blank' : undefined}
+                    rel="noopener noreferrer"
                     initial={{ opacity: 0, y: 20 }}
                     animate={inView ? { opacity: 1, y: 0 } : {}}
                     transition={{ delay: 0.4 + idx * 0.1 }}
@@ -88,7 +90,7 @@ export default function ContactForm() {
                 ))}
               </div>
 
-              {/* Cultural Note */}
+              {/* Note */}
               <motion.div
                 initial={{ opacity: 0 }}
                 animate={inView ? { opacity: 1 } : {}}
@@ -96,14 +98,13 @@ export default function ContactForm() {
                 className="mt-8 p-4 bg-sunset-gold/10 dark:bg-sunset-gold/20 rounded-xl border border-sunset-gold/20 text-center"
               >
                 <p className="text-sm text-neutral-600 dark:text-neutral-300">
-                  <span className="font-amharic block text-lg mb-1">በፍቅር እንገናኝ</span>
                   Let's connect with warmth and creativity
                 </p>
               </motion.div>
             </div>
           </motion.div>
 
-          {/* Right Form */}
+          {/* Contact Form */}
           <motion.div
             initial={{ opacity: 0, x: 50 }}
             animate={inView ? { opacity: 1, x: 0 } : {}}
