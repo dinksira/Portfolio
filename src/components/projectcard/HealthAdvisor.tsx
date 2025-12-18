@@ -16,14 +16,19 @@ const HealthAdvisorCard = () => {
     threshold: 0.1,
   });
 
+  const openGithubRepo = () => {
+    if (typeof window !== 'undefined') {
+      window.open('https://github.com/dinksira/Health_Advisor.git', '_blank', 'noopener,noreferrer');
+    }
+  };
+
   return (
     <motion.div
       ref={ref}
       initial={{ opacity: 0, y: 30 }}
       animate={inView ? { opacity: 1, y: 0 } : {}}
       transition={{ duration: 0.6 }}
-      className="group relative rounded-3xl p-8 shadow-2xl border border-emerald-900/40 overflow-hidden
-                 bg-[#0b1220]/70"
+      className="group relative rounded-3xl p-8 shadow-2xl border border-emerald-900/40 overflow-hidden bg-[#0b1220]/70"
     >
       {/* Ambient background */}
       <div className="absolute inset-0 bg-gradient-to-br from-emerald-900/15 via-transparent to-cyan-900/15 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
@@ -34,13 +39,12 @@ const HealthAdvisorCard = () => {
           initial={{ opacity: 0, x: -30 }}
           animate={inView ? { opacity: 1, x: 0 } : {}}
           transition={{ delay: 0.3 }}
-          className="lg:w-2/5"
+          className="lg:w-2/5 flex flex-col items-center"
         >
-          <div className="relative">
+          <div className="relative w-full">
             <motion.div
               whileHover={{ scale: 1.02 }}
-              className="relative rounded-2xl overflow-hidden shadow-2xl min-h-80
-                         bg-[#0f172a]/80 backdrop-blur-sm border border-emerald-700/40"
+              className="relative rounded-2xl overflow-hidden shadow-2xl min-h-80 bg-[#0f172a]/80 backdrop-blur-sm border border-emerald-700/40"
             >
               <div className="relative w-full h-full flex items-center justify-center p-8">
                 {/* Screen 1 */}
@@ -69,6 +73,18 @@ const HealthAdvisorCard = () => {
               {/* Bottom fade */}
               <div className="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-[#0b1220]/90 to-transparent" />
             </motion.div>
+
+            {/* GitHub Repo Button centered */}
+            <div className="flex justify-center mt-4">
+              <motion.button
+                onClick={openGithubRepo}
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
+                className="w-max bg-[#141c2f]/80 text-emerald-300 border border-emerald-600/50 rounded-xl px-4 py-2 font-semibold shadow-md hover:bg-[#1a2236]/90 transition-colors"
+              >
+                GitHub Repo
+              </motion.button>
+            </div>
           </div>
         </motion.div>
 
@@ -90,9 +106,7 @@ const HealthAdvisorCard = () => {
             </motion.div>
 
             <div>
-              <h3 className="text-2xl font-bold text-white">
-                Health Advisor
-              </h3>
+              <h3 className="text-2xl font-bold text-white">Health Advisor</h3>
               <p className="text-emerald-300 font-semibold">
                 Personalized Health Recommendation App
               </p>
@@ -106,9 +120,7 @@ const HealthAdvisorCard = () => {
 
           {/* Features */}
           <div className="space-y-3">
-            <h4 className="text-white font-semibold">
-              Key Capabilities
-            </h4>
+            <h4 className="text-white font-semibold">Key Capabilities</h4>
             <ul className="space-y-2 text-emerald-100/90">
               <li className="flex gap-3">
                 <span className="mt-2 w-1.5 h-1.5 bg-emerald-400 rounded-full" />
@@ -129,18 +141,14 @@ const HealthAdvisorCard = () => {
           <div className="flex items-center gap-3 pt-2">
             <div className="flex items-center gap-2 px-3 py-2 rounded-xl bg-[#141c2f] border border-emerald-700/40">
               <AndroidIcon className="w-4 h-4 text-emerald-400" />
-              <span className="text-sm font-medium text-emerald-300">
-                Android
-              </span>
+              <span className="text-sm font-medium text-emerald-300">Android</span>
             </div>
           </div>
 
           {/* Status */}
           <div className="flex items-center gap-2 pt-2">
             <div className="w-2 h-2 bg-green-500 rounded-full animate-pulse" />
-            <span className="text-sm text-emerald-300 font-medium">
-              Active Development
-            </span>
+            <span className="text-sm text-emerald-300 font-medium">Active Development</span>
           </div>
         </div>
       </div>
