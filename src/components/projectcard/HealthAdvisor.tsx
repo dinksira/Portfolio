@@ -22,7 +22,8 @@ const HealthAdvisorCard = () => {
       initial={{ opacity: 0, y: 30 }}
       animate={inView ? { opacity: 1, y: 0 } : {}}
       transition={{ duration: 0.6 }}
-      className="group relative bg-[#0b1220] rounded-3xl p-8 shadow-2xl border border-emerald-900/40 hover:border-emerald-400/60 overflow-hidden"
+      className="group relative rounded-3xl p-8 shadow-2xl border border-emerald-900/40 overflow-hidden
+                 bg-[#0b1220]/70"
     >
       {/* Ambient background */}
       <div className="absolute inset-0 bg-gradient-to-br from-emerald-900/15 via-transparent to-cyan-900/15 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
