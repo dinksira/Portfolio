@@ -28,7 +28,7 @@ const HealthAdvisorCard = () => {
       <div className="absolute inset-0 bg-gradient-to-br from-emerald-900/15 via-transparent to-cyan-900/15 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
 
       <div className="relative z-10 flex flex-col lg:flex-row gap-8">
-        {/* LEFT — Image Preview (Eventify-style stacked mockups) */}
+        {/* LEFT — Image Preview */}
         <motion.div
           initial={{ opacity: 0, x: -30 }}
           animate={inView ? { opacity: 1, x: 0 } : {}}
@@ -73,9 +73,21 @@ const HealthAdvisorCard = () => {
 
         {/* RIGHT — Content */}
         <div className="flex-1 space-y-6">
-          {/* Header (icon slot reserved) */}
+          {/* Header with Logo */}
           <div className="flex items-center gap-4">
-            <div className="w-12 h-12 rounded-2xl bg-[#141c2f] border border-emerald-700/40" />
+            <motion.div
+              whileHover={{ scale: 1.05, rotate: 3 }}
+              className="w-12 h-12 rounded-2xl bg-white flex items-center justify-center shadow-lg border border-emerald-200 overflow-hidden"
+            >
+              <Image
+                src="/assets/images/Halogo.jpg"
+                alt="Health Advisor Logo"
+                width={40}
+                height={40}
+                className="object-contain"
+              />
+            </motion.div>
+
             <div>
               <h3 className="text-2xl font-bold text-white">
                 Health Advisor
