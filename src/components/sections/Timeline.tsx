@@ -20,7 +20,7 @@ const timelineData = [
     ],
     icon: Briefcase,
     color: 'text-ethiopian-green',
-    bgColor: 'bg-ethiopian-green/10',
+    bgColor: 'bg-ethiopian-green/20',
   },
   {
     id: 2,
@@ -36,7 +36,7 @@ const timelineData = [
     ],
     icon: Briefcase,
     color: 'text-blue-nile',
-    bgColor: 'bg-blue-nile/10',
+    bgColor: 'bg-blue-nile/20',
   },
   {
     id: 3,
@@ -52,7 +52,7 @@ const timelineData = [
     ],
     icon: GraduationCap,
     color: 'text-axum-purple',
-    bgColor: 'bg-axum-purple/10',
+    bgColor: 'bg-axum-purple/20',
   },
 ];
 
@@ -63,98 +63,93 @@ export default function Timeline() {
   });
 
   return (
-    <section
-      id="experience"
-      className="py-20 bg-white dark:bg-neutral-900 transition-colors duration-300"
-    >
-      <div className="container mx-auto px-6">
-        {/* Section Header */}
+    <section className="py-20 bg-white dark:bg-neutral-900 transition-colors duration-300 relative">
+      <div className="container mx-auto px-6 relative">
+        {/* Header */}
         <motion.div
           ref={ref}
           initial={{ opacity: 0, y: 30 }}
           animate={inView ? { opacity: 1, y: 0 } : {}}
-          className="text-center mb-16"
+          className="text-center mb-20"
         >
           <h2 className="text-4xl md:text-5xl font-display font-bold mb-4 text-neutral-900 dark:text-white">
             Journey & <span className="text-ethiopian-green">Experience</span>
           </h2>
           <p className="text-xl text-neutral-600 dark:text-neutral-300 max-w-2xl mx-auto">
-            My professional path through design, development, and media
+            A snapshot of my professional growth and achievements
           </p>
         </motion.div>
 
+        {/* Central Line */}
+        <div className="absolute left-1/2 top-0 -translate-x-1/2 w-1 bg-neutral-300 dark:bg-neutral-700 h-full"></div>
+
         {/* Timeline Items */}
-        <div className="max-w-4xl mx-auto">
+        <div className="space-y-12 relative z-10">
           {timelineData.map((item, index) => (
             <motion.div
               key={item.id}
-              initial={{ opacity: 0, x: index % 2 === 0 ? -50 : 50 }}
-              animate={inView ? { opacity: 1, x: 0 } : {}}
+              initial={{ opacity: 0, y: 50 }}
+              animate={inView ? { opacity: 1, y: 0 } : {}}
               transition={{ delay: index * 0.2 }}
-              className={`flex ${index % 2 === 0 ? 'flex-row' : 'flex-row-reverse'} items-start mb-12`}
+              className="relative flex flex-col md:flex-row items-center md:justify-between"
             >
-              {/* Timeline Line & Icon */}
-              <div className="flex flex-col items-center w-12 mx-4">
+              {/* Left or Right card */}
+              <div className={`md:w-1/2 ${index % 2 === 0 ? 'md:pr-12 md:ml-auto text-right' : 'md:pl-12 md:mr-auto text-left'}`}>
+                <motion.div
+                  whileHover={{ scale: 1.03 }}
+                  className="bg-white dark:bg-neutral-800 backdrop-blur-md bg-opacity-80 dark:bg-opacity-50 p-6 rounded-xl shadow-lg dark:shadow-gray-700 transition-all duration-300"
+                >
+                  <div className="flex flex-col sm:flex-row sm:items-center justify-between mb-2">
+                    <h3 className="text-xl font-display font-semibold text-neutral-900 dark:text-white">
+                      {item.title}
+                    </h3>
+                    <span className="text-sunset-gold font-medium text-sm mt-1 sm:mt-0">
+                      {item.period}
+                    </span>
+                  </div>
+                  <p className="text-ethiopian-green font-medium mb-1">{item.company}</p>
+                  <p className="text-neutral-500 dark:text-neutral-400 mb-3">{item.location}</p>
+
+                  <ul className="text-neutral-600 dark:text-neutral-300 leading-relaxed list-disc list-inside space-y-1">
+                    {item.description.map((desc, i) => (
+                      <li key={i}>{desc}</li>
+                    ))}
+                  </ul>
+
+                  <div className="mt-4">
+                    <span
+                      className={`inline-block px-3 py-1 text-xs font-medium rounded-full capitalize ${
+                        item.type === 'work'
+                          ? 'bg-ethiopian-green/20 text-ethiopian-green'
+                          : item.type === 'internship'
+                          ? 'bg-axum-purple/20 text-axum-purple'
+                          : 'bg-blue-nile/20 text-blue-nile'
+                      }`}
+                    >
+                      {item.type}
+                    </span>
+                  </div>
+                </motion.div>
+              </div>
+
+              {/* Timeline Icon */}
+              <div className="absolute left-1/2 top-0 -translate-x-1/2 w-12 h-12 flex items-center justify-center">
                 <div
-                  className={`w-12 h-12 rounded-full ${item.bgColor} flex items-center justify-center ${item.color} mb-2`}
+                  className={`w-12 h-12 rounded-full ${item.bgColor} flex items-center justify-center ${item.color} shadow-md dark:shadow-gray-700`}
                 >
                   <item.icon size={20} />
                 </div>
-                {index !== timelineData.length - 1 && (
-                  <div className="w-1 bg-neutral-300 dark:bg-neutral-700 flex-grow" />
-                )}
               </div>
-
-              {/* Content */}
-              <motion.div
-                whileHover={{ scale: 1.02 }}
-                className={`flex-1 bg-white dark:bg-neutral-800 p-6 rounded-xl shadow-lg dark:shadow-gray-700 hover:shadow-xl transition-all duration-300 ${
-                  index % 2 === 0 ? 'ml-4' : 'mr-4'
-                }`}
-              >
-                <div className="flex flex-col sm:flex-row sm:items-center justify-between mb-2">
-                  <h3 className="text-xl font-display font-semibold text-neutral-900 dark:text-white">
-                    {item.title}
-                  </h3>
-                  <span className="text-sunset-gold font-medium text-sm mt-1 sm:mt-0">
-                    {item.period}
-                  </span>
-                </div>
-
-                <p className="text-ethiopian-green font-medium mb-1">{item.company}</p>
-                <p className="text-neutral-500 dark:text-neutral-400 mb-3">{item.location}</p>
-
-                <ul className="text-neutral-600 dark:text-neutral-300 leading-relaxed list-disc list-inside space-y-1">
-                  {item.description.map((desc, i) => (
-                    <li key={i}>{desc}</li>
-                  ))}
-                </ul>
-
-                {/* Type Badge */}
-                <div className="mt-4">
-                  <span
-                    className={`inline-block px-3 py-1 text-xs font-medium rounded-full capitalize ${
-                      item.type === 'work'
-                        ? 'bg-ethiopian-green/10 text-ethiopian-green'
-                        : item.type === 'internship'
-                        ? 'bg-axum-purple/10 text-axum-purple'
-                        : 'bg-blue-nile/10 text-blue-nile'
-                    }`}
-                  >
-                    {item.type}
-                  </span>
-                </div>
-              </motion.div>
             </motion.div>
           ))}
         </div>
 
-        {/* Download Resume CTA */}
+        {/* CTA */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={inView ? { opacity: 1, y: 0 } : {}}
-          transition={{ delay: 1 }}
-          className="text-center mt-12"
+          transition={{ delay: timelineData.length * 0.2 + 0.3 }}
+          className="text-center mt-16"
         >
           <button className="btn-secondary text-lg px-8 py-4">
             Download Resume
