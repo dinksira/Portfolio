@@ -27,38 +27,53 @@ const HealthAdvisorCard = () => {
       <div className="absolute inset-0 bg-gradient-to-br from-emerald-900/15 via-transparent to-cyan-900/15 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
 
       <div className="relative z-10 flex flex-col lg:flex-row gap-8">
-        {/* Left: App Preview */}
+        {/* Left: Image Preview (stylish dual-image layout) */}
         <motion.div
           initial={{ opacity: 0, x: -20 }}
           animate={inView ? { opacity: 1, x: 0 } : {}}
           transition={{ delay: 0.2 }}
           className="lg:w-2/5"
         >
-          <div className="relative rounded-2xl overflow-hidden bg-gradient-to-br from-emerald-900/40 to-cyan-900/40">
-            <Image
-              src="/assets/images/Ha1.jpg"
-              alt="Health Advisor App Preview"
-              width={800}
-              height={600}
-              className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
-            />
-            <div className="absolute inset-0 bg-gradient-to-t from-[#0b1220]/90 via-transparent to-transparent" />
+          <div className="relative h-full rounded-2xl overflow-hidden bg-gradient-to-br from-emerald-900/40 to-cyan-900/40 p-4">
+            {/* Main image */}
+            <motion.div
+              whileHover={{ scale: 1.03 }}
+              className="relative z-10 rounded-xl overflow-hidden shadow-xl"
+            >
+              <Image
+                src="/assets/images/Ha1.jpg"
+                alt="Health Advisor App Screen"
+                width={800}
+                height={600}
+                className="w-full h-full object-cover"
+              />
+            </motion.div>
+
+            {/* Secondary floating image */}
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={inView ? { opacity: 1, y: 0 } : {}}
+              transition={{ delay: 0.4 }}
+              className="absolute -bottom-6 -right-6 w-2/3 rounded-xl overflow-hidden shadow-2xl border border-emerald-400/30 bg-[#0b1220]"
+            >
+              <Image
+                src="/assets/images/Ha2.jpg"
+                alt="Health Advisor Secondary Screen"
+                width={600}
+                height={400}
+                className="w-full h-full object-cover"
+              />
+            </motion.div>
+
+            <div className="absolute inset-0 bg-gradient-to-t from-[#0b1220]/90 via-transparent to-transparent pointer-events-none" />
           </div>
         </motion.div>
 
         {/* Right: Content */}
         <div className="flex-1 space-y-6">
-          {/* Header */}
+          {/* Header (icon intentionally left blank for now) */}
           <div className="flex items-center gap-4">
-            <div className="w-12 h-12 rounded-2xl bg-gradient-to-br from-emerald-500 to-cyan-500 flex items-center justify-center shadow-lg">
-              <Image
-                src="/assets/images/Ha2.jpg"
-                alt="Health Advisor Logo"
-                width={32}
-                height={32}
-                className="object-contain"
-              />
-            </div>
+            <div className="w-12 h-12 rounded-2xl bg-[#141c2f] border border-emerald-700/40" />
             <div>
               <h3 className="text-2xl font-bold text-white">
                 Health Advisor
@@ -70,16 +85,13 @@ const HealthAdvisorCard = () => {
           </div>
 
           <p className="text-emerald-100/90 text-lg leading-relaxed">
-            An Android application designed to deliver personalized health
-            insights and daily recommendations based on user data, habits, and
-            wellness goals.
+            An Android application designed to deliver personalized health insights
+            and daily recommendations based on user data, habits, and wellness goals.
           </p>
 
           {/* Features */}
           <div className="space-y-3">
-            <h4 className="text-white font-semibold">
-              Key Capabilities
-            </h4>
+            <h4 className="text-white font-semibold">Key Capabilities</h4>
             <ul className="space-y-2 text-emerald-100/90">
               <li className="flex gap-3">
                 <span className="mt-2 w-1.5 h-1.5 bg-emerald-400 rounded-full" />
