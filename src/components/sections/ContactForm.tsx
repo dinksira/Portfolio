@@ -162,7 +162,6 @@ export default function ContactForm() {
                   placeholder="What's this about?"
                 />
               </div>
-
               <div className="mb-6">
                 <label htmlFor="message" className="block text-sm font-medium text-neutral-700 dark:text-neutral-300 mb-2">
                   Message *
@@ -178,7 +177,6 @@ export default function ContactForm() {
                   placeholder="Tell me about your project, ideas, or just say hello..."
                 />
               </div>
-
               <motion.button
                 type="submit"
                 whileHover={{ scale: 1.02 }}
