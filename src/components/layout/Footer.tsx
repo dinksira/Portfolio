@@ -123,9 +123,8 @@ export default function Footer() {
       </div>
 
       {/* Bottom */}
-      <div className="border-t border-neutral-800 mt-8 pt-8 flex flex-col md:flex-row justify-between items-center text-neutral-400 text-sm relative z-10">
+      <div className="border-t border-neutral-800 mt-8 pt-8 flex justify-center text-neutral-400 text-sm relative z-10">
         <p>© {currentYear} Dinksira Elsa. All rights reserved.</p>
-        <p className="mt-2 md:mt-0">Built with ❤️ using Next.js & Tailwind CSS</p>
       </div>
 
       <style jsx>{`
