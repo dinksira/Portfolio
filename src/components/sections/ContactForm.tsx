@@ -10,7 +10,7 @@ export default function ContactForm() {
     triggerOnce: true,
     threshold: 0.1,
   });
-
+  
   const [formData, setFormData] = useState({
     name: '',
     email: '',
