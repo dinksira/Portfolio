@@ -80,68 +80,82 @@ export default function Timeline() {
           </p>
         </motion.div>
 
-        {/* Central Line */}
-        <div className="absolute left-1/2 top-0 -translate-x-1/2 w-1 bg-neutral-300 dark:bg-neutral-700 h-full"></div>
+        {/* Timeline Wrapper */}
+        <div className="relative">
+          {/* Central Line */}
+          <div className="absolute left-1/2 top-0 -translate-x-1/2 w-1 bg-neutral-300 dark:bg-neutral-700 h-full"></div>
 
-        {/* Timeline Items */}
-        <div className="space-y-12 relative z-10">
-          {timelineData.map((item, index) => (
-            <motion.div
-              key={item.id}
-              initial={{ opacity: 0, y: 50 }}
-              animate={inView ? { opacity: 1, y: 0 } : {}}
-              transition={{ delay: index * 0.2 }}
-              className="relative flex flex-col md:flex-row items-center md:justify-between"
-            >
-              {/* Left or Right card */}
-              <div className={`md:w-1/2 ${index % 2 === 0 ? 'md:pr-12 md:ml-auto text-right' : 'md:pl-12 md:mr-auto text-left'}`}>
-                <motion.div
-                  whileHover={{ scale: 1.03 }}
-                  className="bg-white dark:bg-neutral-800 backdrop-blur-md bg-opacity-80 dark:bg-opacity-50 p-6 rounded-xl shadow-lg dark:shadow-gray-700 transition-all duration-300"
-                >
-                  <div className="flex flex-col sm:flex-row sm:items-center justify-between mb-2">
-                    <h3 className="text-xl font-display font-semibold text-neutral-900 dark:text-white">
-                      {item.title}
-                    </h3>
-                    <span className="text-sunset-gold font-medium text-sm mt-1 sm:mt-0">
-                      {item.period}
-                    </span>
-                  </div>
-                  <p className="text-ethiopian-green font-medium mb-1">{item.company}</p>
-                  <p className="text-neutral-500 dark:text-neutral-400 mb-3">{item.location}</p>
-
-                  <ul className="text-neutral-600 dark:text-neutral-300 leading-relaxed list-disc list-inside space-y-1">
-                    {item.description.map((desc, i) => (
-                      <li key={i}>{desc}</li>
-                    ))}
-                  </ul>
-
-                  <div className="mt-4">
-                    <span
-                      className={`inline-block px-3 py-1 text-xs font-medium rounded-full capitalize ${
-                        item.type === 'work'
-                          ? 'bg-ethiopian-green/20 text-ethiopian-green'
-                          : item.type === 'internship'
-                          ? 'bg-axum-purple/20 text-axum-purple'
-                          : 'bg-blue-nile/20 text-blue-nile'
-                      }`}
-                    >
-                      {item.type}
-                    </span>
-                  </div>
-                </motion.div>
-              </div>
-
-              {/* Timeline Icon */}
-              <div className="absolute left-1/2 top-0 -translate-x-1/2 w-12 h-12 flex items-center justify-center">
+          {/* Timeline Items */}
+          <div className="space-y-12 relative z-10">
+            {timelineData.map((item, index) => (
+              <motion.div
+                key={item.id}
+                initial={{ opacity: 0, y: 50 }}
+                animate={inView ? { opacity: 1, y: 0 } : {}}
+                transition={{ delay: index * 0.2 }}
+                className="relative flex flex-col md:flex-row items-center md:justify-between"
+              >
+                {/* Left / Right Card */}
                 <div
-                  className={`w-12 h-12 rounded-full ${item.bgColor} flex items-center justify-center ${item.color} shadow-md dark:shadow-gray-700`}
+                  className={`md:w-1/2 ${
+                    index % 2 === 0
+                      ? 'md:pr-12 md:ml-auto text-right'
+                      : 'md:pl-12 md:mr-auto text-left'
+                  }`}
                 >
-                  <item.icon size={20} />
+                  <motion.div
+                    whileHover={{ scale: 1.03 }}
+                    className="bg-white dark:bg-neutral-800 backdrop-blur-md bg-opacity-80 dark:bg-opacity-50 p-6 rounded-xl shadow-lg dark:shadow-gray-700 transition-all duration-300"
+                  >
+                    <div className="flex flex-col sm:flex-row sm:items-center justify-between mb-2">
+                      <h3 className="text-xl font-display font-semibold text-neutral-900 dark:text-white">
+                        {item.title}
+                      </h3>
+                      <span className="text-sunset-gold font-medium text-sm mt-1 sm:mt-0">
+                        {item.period}
+                      </span>
+                    </div>
+
+                    <p className="text-ethiopian-green font-medium mb-1">
+                      {item.company}
+                    </p>
+                    <p className="text-neutral-500 dark:text-neutral-400 mb-3">
+                      {item.location}
+                    </p>
+
+                    <ul className="text-neutral-600 dark:text-neutral-300 leading-relaxed list-disc list-inside space-y-1">
+                      {item.description.map((desc, i) => (
+                        <li key={i}>{desc}</li>
+                      ))}
+                    </ul>
+
+                    <div className="mt-4">
+                      <span
+                        className={`inline-block px-3 py-1 text-xs font-medium rounded-full capitalize ${
+                          item.type === 'work'
+                            ? 'bg-ethiopian-green/20 text-ethiopian-green'
+                            : item.type === 'internship'
+                            ? 'bg-axum-purple/20 text-axum-purple'
+                            : 'bg-blue-nile/20 text-blue-nile'
+                        }`}
+                      >
+                        {item.type}
+                      </span>
+                    </div>
+                  </motion.div>
                 </div>
-              </div>
-            </motion.div>
-          ))}
+
+                {/* Timeline Icon */}
+                <div className="absolute left-1/2 top-0 -translate-x-1/2 w-12 h-12 flex items-center justify-center">
+                  <div
+                    className={`w-12 h-12 rounded-full ${item.bgColor} flex items-center justify-center ${item.color} shadow-md dark:shadow-gray-700`}
+                  >
+                    <item.icon size={20} />
+                  </div>
+                </div>
+              </motion.div>
+            ))}
+          </div>
         </div>
 
         {/* CTA */}
