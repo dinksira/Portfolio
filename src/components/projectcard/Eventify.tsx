@@ -283,7 +283,6 @@ const Eventify = () => {
               </ul>
             </div>
 
-            {/* Design Tools */}
             <div className="space-y-3">
               <h4 className="font-semibold text-white flex items-center gap-2">
                 <div className="w-2 h-2 bg-white rounded-full"></div>
@@ -311,7 +310,6 @@ const Eventify = () => {
               </div>
             </div>
 
-            {/* Event Types */}
             <div className="space-y-3">
               <h4 className="font-semibold text-white flex items-center gap-2">
                 <div className="w-2 h-2 bg-white rounded-full"></div>
@@ -337,7 +335,6 @@ const Eventify = () => {
               </div>
             </div>
 
-            {/* Color Palette */}
             <div className="p-4 rounded-lg border bg-white/5 border-white/20">
               <h4 className="font-semibold text-white mb-3">Design Color Palette</h4>
               <div className="flex items-center gap-4">
