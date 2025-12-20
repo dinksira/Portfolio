@@ -30,7 +30,6 @@ export default function Navigation() {
     return () => observer.disconnect();
   }, []);
 
-  // Hide navigation on scroll down, show on scroll up
   useEffect(() => {
     const handleScroll = () => {
       const currentScrollY = window.scrollY;
@@ -94,7 +93,6 @@ export default function Navigation() {
             whileTap={{ scale: 0.95 }}
             className="flex items-center space-x-3 group relative"
           >
-            {/* Tooltip */}
             <motion.div
               initial={{ opacity: 0, x: 10 }}
               whileHover={{ opacity: 1, x: 0 }}
@@ -104,7 +102,6 @@ export default function Navigation() {
               <div className="absolute top-1/2 right-0 transform translate-x-1 -translate-y-1/2 w-2 h-2 bg-neutral-900 dark:bg-neutral-100 rotate-45" />
             </motion.div>
 
-            {/* Label */}
             <motion.span
               className={`text-sm font-medium transition-all duration-300 ${
                 activeSection === item.id
