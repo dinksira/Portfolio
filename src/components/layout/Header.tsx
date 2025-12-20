@@ -245,7 +245,6 @@ export default function Header() {
                   <span>Download Resume</span>
                 </motion.button>
                 
-                {/* Mobile Controls */}
                 <motion.div
                   initial={{ opacity: 0 }}
                   animate={{ opacity: 1 }}
@@ -277,8 +276,6 @@ export default function Header() {
           )}
         </AnimatePresence>
       </nav>
-
-      {/* Scroll Progress Bar */}
       <motion.div
         className="absolute bottom-0 left-0 h-0.5 bg-gradient-to-r from-ethiopian-green to-sunset-gold"
         style={{ width: `${scrollProgress}%` }}
