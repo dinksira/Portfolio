@@ -3,7 +3,6 @@
 import { motion } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
 
-// Tech Stack Icons
 const NextJSIcon = ({ className = "" }) => (
   <svg className={className} viewBox="0 0 24 24" fill="currentColor">
     <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l5-5-5-5v10z"/>
@@ -35,7 +34,6 @@ const JavaScriptIcon = ({ className = "" }) => (
   </svg>
 );
 
-// External Link Icons
 const FigmaIcon = ({ className = "" }) => (
   <svg className={className} viewBox="0 0 32 32" fill="currentColor">
     <path fill="#f4511e" d="M12 4h4v8h-4a4 4 0 0 1-4-4a4 4 0 0 1 4-4"/>
@@ -86,10 +84,8 @@ const NexusOS = () => {
       transition={{ duration: 0.6 }}
       className="group relative bg-[#0a0a10] rounded-3xl p-8 shadow-2xl hover:shadow-3xl transition-all duration-500 border border-purple-900/30 hover:border-cyan-500/50 overflow-hidden"
     >
-      {/* Animated Background Elements */}
       <div className="absolute inset-0 bg-gradient-to-br from-purple-900/10 via-transparent to-cyan-900/10 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
       
-      {/* Cyberpunk Grid Pattern */}
       <div className="absolute inset-0 opacity-[0.03] group-hover:opacity-[0.05] transition-opacity duration-500">
         <div className="absolute inset-0 bg-[linear-gradient(90deg,transparent_49%,currentColor_50%,transparent_51%)] bg-[length:50px_50px]"></div>
         <div className="absolute inset-0 bg-[linear-gradient(transparent_49%,currentColor_50%,transparent_51%)] bg-[length:50px_50px]"></div>
@@ -97,7 +93,6 @@ const NexusOS = () => {
       
       <div className="relative z-10">
         <div className="flex flex-col lg:flex-row gap-8 items-start">
-          {/* Left Content - Project Image */}
           <motion.div
             initial={{ opacity: 0, x: -30 }}
             animate={inView ? { opacity: 1, x: 0 } : {}}
@@ -105,12 +100,10 @@ const NexusOS = () => {
             className="lg:w-2/5"
           >
             <div className="relative">
-              {/* Image Container with Glass Effect */}
               <motion.div
                 whileHover={{ scale: 1.02 }}
                 className="relative rounded-2xl overflow-hidden shadow-2xl group/image h-full min-h-80 bg-gradient-to-br from-gray-900 to-purple-900/50 backdrop-blur-sm"
               >
-                {/* Futuristic Dashboard Image - Using Nexus.png */}
                 <img 
                   src="/Nexus.png" 
                   alt="Nexus OS Futuristic Dashboard"
