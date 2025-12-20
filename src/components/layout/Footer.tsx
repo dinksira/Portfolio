@@ -1,7 +1,16 @@
 'use client';
 
 import { motion } from 'framer-motion';
-import { Github, Linkedin, Twitter, Mail, Code, Palette, Video } from 'lucide-react';
+import {
+  Github,
+  Linkedin,
+  Mail,
+  Send,
+  Phone,
+  Dribbble,
+} from 'lucide-react';
+import { SiBehance } from 'react-icons/si';
+import { Code, Palette, Video } from 'lucide-react';
 import { useState, useEffect } from 'react';
 
 export default function Footer() {
@@ -11,6 +20,7 @@ export default function Footer() {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [isDeleting, setIsDeleting] = useState(false);
   const [loopNum, setLoopNum] = useState(0);
+
   const names = ['Dinksira Elsa', 'ድንቅስራ ኤልሳ'];
   const typingSpeed = 100;
   const deletingSpeed = 50;
@@ -36,15 +46,49 @@ export default function Footer() {
       }
     };
 
-    const timer = setTimeout(handleTyping, isDeleting ? deletingSpeed : typingSpeed);
+    const timer = setTimeout(
+      handleTyping,
+      isDeleting ? deletingSpeed : typingSpeed
+    );
     return () => clearTimeout(timer);
-  }, [currentIndex, isDeleting, loopNum, names]);
+  }, [currentIndex, isDeleting, loopNum]);
 
   const socialLinks = [
-    { icon: Github, href: 'https://github.com/dinksira', label: 'GitHub' },
-    { icon: Linkedin, href: 'https://linkedin.com/in/dinksira', label: 'LinkedIn' },
-    { icon: Twitter, href: 'https://twitter.com/dinksira', label: 'Twitter' },
-    { icon: Mail, href: 'mailto:hello@dinksira.com', label: 'Email' },
+    {
+      icon: Github,
+      href: 'https://github.com/dinksira',
+      label: 'GitHub',
+    },
+    {
+      icon: Linkedin,
+      href: 'https://www.linkedin.com/in/dinksira-elsa-13904b319/',
+      label: 'LinkedIn',
+    },
+    {
+      icon: Dribbble,
+      href: 'https://dribbble.com/dinksira-elsa',
+      label: 'Dribbble',
+    },
+    {
+      icon: SiBehance,
+      href: 'https://www.behance.net/dinksiraelsa',
+      label: 'Behance',
+    },
+    {
+      icon: Send,
+      href: 'https://t.me/Dink_Sira',
+      label: 'Telegram',
+    },
+    {
+      icon: Phone,
+      href: 'https://wa.me/251949765679',
+      label: 'WhatsApp',
+    },
+    {
+      icon: Mail,
+      href: 'mailto:hello@dinksira.com',
+      label: 'Email',
+    },
   ];
 
   const scrollToSection = (sectionId: string) => {
@@ -57,27 +101,44 @@ export default function Footer() {
   return (
     <footer className="relative bg-neutral-900 text-neutral-100 overflow-hidden">
       {/* Floating Icons */}
-      <motion.div animate={{ y: [0, -10, 0] }} transition={{ duration: 6, repeat: Infinity }} className="absolute top-10 left-5 opacity-20">
+      <motion.div
+        animate={{ y: [0, -10, 0] }}
+        transition={{ duration: 6, repeat: Infinity }}
+        className="absolute top-10 left-5 opacity-20"
+      >
         <Code size={32} />
       </motion.div>
-      <motion.div animate={{ y: [0, 10, 0] }} transition={{ duration: 5, repeat: Infinity, delay: 1 }} className="absolute bottom-10 right-5 opacity-20">
+
+      <motion.div
+        animate={{ y: [0, 10, 0] }}
+        transition={{ duration: 5, repeat: Infinity, delay: 1 }}
+        className="absolute bottom-10 right-5 opacity-20"
+      >
         <Palette size={32} />
       </motion.div>
-      <motion.div animate={{ y: [5, -5, 5], rotate: [0, 180, 360] }} transition={{ duration: 7, repeat: Infinity, delay: 2 }} className="absolute top-1/2 left-1/2 opacity-20">
+
+      <motion.div
+        animate={{ y: [5, -5, 5], rotate: [0, 180, 360] }}
+        transition={{ duration: 7, repeat: Infinity, delay: 2 }}
+        className="absolute top-1/2 left-1/2 opacity-20"
+      >
         <Video size={32} />
       </motion.div>
 
       <div className="container mx-auto px-6 py-16 grid grid-cols-1 md:grid-cols-4 gap-8 relative z-10">
         {/* Brand */}
         <div className="md:col-span-2">
-          <motion.div initial={{ opacity: 0 }} whileInView={{ opacity: 1 }} className="flex items-center space-x-2 mb-4">
+          <div className="flex items-center space-x-2 mb-4">
             <div className="w-8 h-8 bg-gradient-to-r from-ethiopian-green to-sunset-gold rounded-lg" />
             <span className="font-display text-xl font-bold typewriter-text">
-              {displayText}<span className="typing-cursor">|</span>
+              {displayText}
+              <span className="typing-cursor">|</span>
             </span>
-          </motion.div>
+          </div>
+
           <p className="text-neutral-400 max-w-md">
-            UI/UX Designer & Frontend Developer creating beautiful, functional experiences inspired by Ethiopian heritage.
+            UI/UX Designer & Frontend Developer crafting thoughtful,
+            culture-inspired digital experiences rooted in Ethiopian identity.
           </p>
         </div>
 
@@ -85,7 +146,7 @@ export default function Footer() {
         <div>
           <h3 className="font-display font-semibold mb-4">Quick Links</h3>
           <ul className="space-y-2 text-neutral-400">
-            {['home','projects','skills','experience'].map(section => (
+            {['home', 'projects', 'skills', 'experience'].map(section => (
               <li key={section}>
                 <button
                   onClick={() => scrollToSection(section)}
@@ -101,7 +162,7 @@ export default function Footer() {
         {/* Connect */}
         <div>
           <h3 className="font-display font-semibold mb-4">Connect</h3>
-          <div className="flex space-x-4">
+          <div className="flex flex-wrap gap-3">
             {socialLinks.map((social, index) => (
               <motion.a
                 key={social.label}
@@ -110,7 +171,7 @@ export default function Footer() {
                 rel="noopener noreferrer"
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
-                transition={{ delay: index * 0.1 }}
+                transition={{ delay: index * 0.08 }}
                 whileHover={{ scale: 1.1, y: -2 }}
                 className="p-2 bg-neutral-800 rounded-lg hover:bg-ethiopian-green transition-all duration-300"
                 aria-label={social.label}
@@ -130,18 +191,23 @@ export default function Footer() {
       <style jsx>{`
         .typewriter-text {
           font-family: 'Clash Display', sans-serif;
-          background: linear-gradient(135deg, #1A6D42, #6D1A8C);
+          background: linear-gradient(135deg, #1a6d42, #6d1a8c);
           -webkit-background-clip: text;
           -webkit-text-fill-color: transparent;
-          background-clip: text;
         }
         .typing-cursor {
           animation: blink 1s infinite;
-          color: #1A6D42;
+          color: #1a6d42;
         }
         @keyframes blink {
-          0%, 50% { opacity: 1; }
-          51%, 100% { opacity: 0; }
+          0%,
+          50% {
+            opacity: 1;
+          }
+          51%,
+          100% {
+            opacity: 0;
+          }
         }
       `}</style>
     </footer>
