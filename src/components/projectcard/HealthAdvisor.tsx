@@ -90,7 +90,6 @@ const HealthAdvisorCard = () => {
 
         {/* RIGHT — Content */}
         <div className="flex-1 space-y-6">
-          {/* Header with Logo */}
           <div className="flex items-center gap-4">
             <motion.div
               whileHover={{ scale: 1.05, rotate: 3 }}
@@ -118,7 +117,6 @@ const HealthAdvisorCard = () => {
             and daily recommendations based on user data, habits, and wellness goals.
           </p>
 
-          {/* Features */}
           <div className="space-y-3">
             <h4 className="text-white font-semibold">Key Capabilities</h4>
             <ul className="space-y-2 text-emerald-100/90">
@@ -137,7 +135,6 @@ const HealthAdvisorCard = () => {
             </ul>
           </div>
 
-          {/* Platform */}
           <div className="flex items-center gap-3 pt-2">
             <div className="flex items-center gap-2 px-3 py-2 rounded-xl bg-[#141c2f] border border-emerald-700/40">
               <AndroidIcon className="w-4 h-4 text-emerald-400" />
@@ -145,7 +142,6 @@ const HealthAdvisorCard = () => {
             </div>
           </div>
 
-          {/* Status */}
           <div className="flex items-center gap-2 pt-2">
             <div className="w-2 h-2 bg-green-500 rounded-full animate-pulse" />
             <span className="text-sm text-emerald-300 font-medium">Active Development</span>
