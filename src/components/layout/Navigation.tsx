@@ -7,10 +7,27 @@ export default function Navigation() {
   const [activeSection, setActiveSection] = useState('home');
   const [isVisible, setIsVisible] = useState(true);
   const [lastScrollY, setLastScrollY] = useState(0);
+  const [scrollProgress, setScrollProgress] = useState(0);
+
+  const navItems = [
+    { id: 'home', label: 'Home', icon: '🏠' },
+    { id: 'projects', label: 'Projects', icon: '💼' },
+    { id: 'skills', label: 'Skills', icon: '⚡' },
+    { id: 'experience', label: 'Experience', icon: '📈' },
+    { id: 'contact', label: 'Contact', icon: '📞' },
+  ];
+
+  const scrollToSection = (sectionId: string) => {
+    const element = document.getElementById(sectionId);
+    if (!element) return;
+    const offset = -90; // adjust for fixed header height
+    const y = element.getBoundingClientRect().top + window.pageYOffset + offset;
+    window.scrollTo({ top: y, behavior: 'smooth' });
+  };
 
   useEffect(() => {
+    // Intersection Observer for active section
     const sections = document.querySelectorAll('section[id]');
-    
     const observer = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
@@ -19,89 +36,65 @@ export default function Navigation() {
           }
         });
       },
-      { 
-        threshold: 0.3,
-        rootMargin: '-20% 0px -20% 0px'
+      {
+        threshold: 0.4,
+        rootMargin: '-30% 0px -30% 0px',
       }
     );
 
     sections.forEach((section) => observer.observe(section));
-
     return () => observer.disconnect();
   }, []);
 
   useEffect(() => {
     const handleScroll = () => {
       const currentScrollY = window.scrollY;
-      
-      if (currentScrollY > lastScrollY && currentScrollY > 100) {
-        setIsVisible(false);
-      } else {
-        setIsVisible(true);
-      }
-      
+
+      // Show/hide nav on scroll
+      setIsVisible(!(currentScrollY > lastScrollY && currentScrollY > 100));
       setLastScrollY(currentScrollY);
+
+      // Scroll progress
+      const totalHeight =
+        document.documentElement.scrollHeight - window.innerHeight;
+      setScrollProgress((currentScrollY / totalHeight) * 100);
     };
 
     window.addEventListener('scroll', handleScroll, { passive: true });
     return () => window.removeEventListener('scroll', handleScroll);
   }, [lastScrollY]);
 
-  const navItems = [
-    { id: 'home', label: 'Home', icon: '🏠' },
-    { id: 'projects', label: 'Projects', icon: '💼' },
-    { id: 'skills', label: 'Skills', icon: '⚡' },
-    { id: 'experience', label: 'Experience', icon: '📈' },
-    { id: 'blog', label: 'Blog', icon: '✍️' },
-    { id: 'contact', label: 'Contact', icon: '📞' },
-  ];
-
-  const scrollToSection = (sectionId: string) => {
-    const element = document.getElementById(sectionId);
-    if (element) {
-      element.scrollIntoView({ 
-        behavior: 'smooth',
-        block: 'start'
-      });
-    }
-  };
-
   return (
     <motion.nav
       initial={{ opacity: 0, x: 50 }}
-      animate={{ 
+      animate={{
         opacity: isVisible ? 1 : 0,
-        x: isVisible ? 0 : 50
+        x: isVisible ? 0 : 50,
       }}
-      transition={{ 
-        duration: 0.3,
-        type: "spring",
-        stiffness: 300,
-        damping: 30
-      }}
+      transition={{ duration: 0.3, type: 'spring', stiffness: 300, damping: 30 }}
       className="fixed right-6 top-1/2 transform -translate-y-1/2 z-40 hidden lg:block"
     >
-      <div className="flex flex-col items-end space-y-3">
+      <div className="flex flex-col items-end space-y-3 relative">
         {navItems.map((item) => (
           <motion.button
             key={item.id}
             onClick={() => scrollToSection(item.id)}
-            whileHover={{ 
+            whileHover={{
               x: -5,
-              transition: { type: "spring", stiffness: 400, damping: 10 }
+              transition: { type: 'spring', stiffness: 400, damping: 10 },
             }}
             whileTap={{ scale: 0.95 }}
             className="flex items-center space-x-3 group relative"
           >
+            {/* Tooltip */}
             <motion.div
-              initial={{ opacity: 0, x: 10 }}
-              whileHover={{ opacity: 1, x: 0 }}
               className="absolute right-full mr-3 bg-neutral-900 dark:bg-neutral-100 text-white dark:text-neutral-900 text-xs px-2 py-1 rounded-md whitespace-nowrap opacity-0 group-hover:opacity-100 transition-opacity duration-300"
             >
               {item.label}
               <div className="absolute top-1/2 right-0 transform translate-x-1 -translate-y-1/2 w-2 h-2 bg-neutral-900 dark:bg-neutral-100 rotate-45" />
             </motion.div>
 
+            {/* Label */}
             <motion.span
               className={`text-sm font-medium transition-all duration-300 ${
                 activeSection === item.id
@@ -135,24 +128,17 @@ export default function Navigation() {
           </motion.button>
         ))}
 
-        {/* Scroll Progress Bar */}
-        <motion.div 
-          className="w-1 h-20 bg-neutral-200 dark:bg-neutral-700 rounded-full mt-4 overflow-hidden"
-          initial={{ scale: 0 }}
-          animate={{ scale: 1 }}
-          transition={{ delay: 0.5 }}
-        >
+        {/* Scroll Progress */}
+        <div className="w-1 h-20 bg-neutral-200 dark:bg-neutral-700 rounded-full mt-4 overflow-hidden">
           <motion.div
             className="w-full bg-gradient-to-b from-ethiopian-green to-sunset-gold rounded-full"
-            animate={{
-              height: `${(window.scrollY / (document.documentElement.scrollHeight - window.innerHeight)) * 100}%`
-            }}
+            style={{ height: `${scrollProgress}%` }}
             transition={{ duration: 0.1 }}
           />
-        </motion.div>
+        </div>
       </div>
 
-      {/* Connection Lines */}
+      {/* Vertical Connection Line */}
       <div className="absolute top-1/2 right-3 transform -translate-y-1/2 -z-10">
         <svg width="2" height="100%" className="h-full">
           <motion.line
