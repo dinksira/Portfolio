@@ -82,10 +82,8 @@ export default function Timeline() {
 
         {/* Timeline Wrapper */}
         <div className="relative">
-          {/* Central Line */}
           <div className="absolute left-1/2 top-0 -translate-x-1/2 w-1 bg-neutral-300 dark:bg-neutral-700 h-full"></div>
 
-          {/* Timeline Items */}
           <div className="space-y-12 relative z-10">
             {timelineData.map((item, index) => (
               <motion.div
@@ -95,7 +93,6 @@ export default function Timeline() {
                 transition={{ delay: index * 0.2 }}
                 className="relative flex flex-col md:flex-row items-center md:justify-between"
               >
-                {/* Left / Right Card */}
                 <div
                   className={`md:w-1/2 ${
                     index % 2 === 0
@@ -145,7 +142,6 @@ export default function Timeline() {
                   </motion.div>
                 </div>
 
-                {/* Timeline Icon */}
                 <div className="absolute left-1/2 top-0 -translate-x-1/2 w-12 h-12 flex items-center justify-center">
                   <div
                     className={`w-12 h-12 rounded-full ${item.bgColor} flex items-center justify-center ${item.color} shadow-md dark:shadow-gray-700`}
@@ -165,9 +161,13 @@ export default function Timeline() {
           transition={{ delay: timelineData.length * 0.2 + 0.3 }}
           className="text-center mt-16"
         >
-          <button className="btn-secondary text-lg px-8 py-4">
+          <a
+            href="/Dink%27s_Resume.pdf"
+            download
+            className="btn-secondary text-lg px-8 py-4 inline-block"
+          >
             Download Resume
-          </button>
+          </a>
         </motion.div>
       </div>
     </section>
